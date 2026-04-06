@@ -20,22 +20,22 @@
     location.href=url;
   });
 
-  // Odometer rolling counter
+  // Rolling counter
   var el=document.getElementById('claimCount');
   if(!el)return;
   var n=23847;
-  var strips=[];
+  var digitEls=[];
 
   function build(num){
     var s=num.toLocaleString();
     el.innerHTML='';
-    strips=[];
+    digitEls=[];
     for(var i=0;i<s.length;i++){
       var c=s[i];
       if(c>='0'&&c<='9'){
         var d=parseInt(c);
-        var digit=document.createElement('span');
-        digit.className='roller__digit';
+        var wrap=document.createElement('span');
+        wrap.className='roller__digit';
         var strip=document.createElement('span');
         strip.className='roller__strip';
         for(var j=0;j<=9;j++){
@@ -43,60 +43,57 @@
           sp.textContent=j;
           strip.appendChild(sp);
         }
-        // Duplicate 0-9 so we can roll forward past 9→0
         for(var j=0;j<=9;j++){
           var sp=document.createElement('span');
           sp.textContent=j;
           strip.appendChild(sp);
         }
-        strip.style.transform='translateY(-'+d*5+'%)';
-        digit.appendChild(strip);
-        el.appendChild(digit);
-        strips.push({el:strip,val:d});
+        strip._val=d;
+        strip._pos=d;
+        strip.style.transform='translateY(-'+(d*100/20)+'%)';
+        wrap.appendChild(strip);
+        el.appendChild(wrap);
+        digitEls.push(strip);
       }else{
         var sep=document.createElement('span');
         sep.className='roller__sep';
         sep.textContent=c;
         el.appendChild(sep);
-        strips.push(null);
       }
     }
   }
 
   function rollTo(num){
     var s=num.toLocaleString();
-    var si=0;
+    var di=0;
     for(var i=0;i<s.length;i++){
-      var c=s[i];
-      if(c>='0'&&c<='9'){
-        var d=parseInt(c);
-        while(!strips[si])si++;
-        var obj=strips[si];
-        if(obj&&obj.val!==d){
-          // Always roll forward (up)
-          var target=d;
-          if(d<obj.val)target=d+10; // wrap: roll past 9 into second set
-          obj.el.style.transition='transform .8s cubic-bezier(.15,.85,.3,1)';
-          obj.el.style.transform='translateY(-'+target*5+'%)';
-          // After animation, snap to real position if wrapped
-          if(target>=10){
-            (function(strip,realD){
-              setTimeout(function(){
-                strip.style.transition='none';
-                strip.style.transform='translateY(-'+realD*5+'%)';
-              },850);
-            })(obj.el,d);
-          }
-          obj.val=d;
+      if(s[i]<'0'||s[i]>'9')continue;
+      var d=parseInt(s[i]);
+      var strip=digitEls[di];
+      if(strip&&strip._val!==d){
+        var pos=strip._pos;
+        var target;
+        if(d>=strip._val){
+          target=pos+(d-strip._val);
+        }else{
+          target=pos+(10-strip._val+d);
         }
-        si++;
-      }else{
-        si++;
+        strip.style.transition='transform .5s cubic-bezier(.4,0,.2,1)';
+        strip.style.transform='translateY(-'+(target*100/20)+'%)';
+        strip._val=d;
+        strip._pos=target;
+        // Reset position if gone too far (past second set)
+        if(target>=18){
+          (function(st,dd){
+            setTimeout(function(){
+              st.style.transition='none';
+              st._pos=dd;
+              st.style.transform='translateY(-'+(dd*100/20)+'%)';
+            },550);
+          })(strip,d);
+        }
       }
-    }
-    // Handle digit count change (e.g. 9,999 → 10,000)
-    if(s.length!==el.children.length){
-      build(num);
+      di++;
     }
   }
 
