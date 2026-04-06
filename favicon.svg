@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Box body -->
+  <rect x="8" y="24" width="48" height="32" rx="4" fill="#F28C28"/>
+  <rect x="8" y="24" width="48" height="32" rx="4" fill="url(#boxShade)"/>
+  <!-- Box lid -->
+  <rect x="4" y="18" width="56" height="12" rx="3" fill="#F5A623"/>
+  <!-- Vertical ribbon -->
+  <rect x="27" y="18" width="10" height="38" fill="#E8552E"/>
+  <!-- Horizontal ribbon -->
+  <rect x="4" y="21" width="56" height="6" fill="#E8552E"/>
+  <!-- Bow left -->
+  <ellipse cx="26" cy="14" rx="9" ry="7" fill="#E8552E" transform="rotate(-15 26 14)"/>
+  <!-- Bow right -->
+  <ellipse cx="38" cy="14" rx="9" ry="7" fill="#D94420" transform="rotate(15 38 14)"/>
+  <!-- Bow center -->
+  <circle cx="32" cy="17" r="4" fill="#C83A1A"/>
+  <!-- Gradient for depth -->
+  <defs>
+    <linearGradient id="boxShade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.15)"/>
+      <stop offset="100%" stop-color="rgba(0,0,0,0.1)"/>
+    </linearGradient>
+  </defs>
+</svg>
