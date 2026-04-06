@@ -19,4 +19,13 @@
     }));
     location.href=url;
   });
+
+  // Social proof counter
+  var el=document.getElementById('claimCount');
+  if(!el)return;
+  var n=23847;
+  setInterval(function(){
+    n+=Math.floor(Math.random()*3)+1;
+    el.textContent=n.toLocaleString();
+  },Math.floor(Math.random()*6000)+8000);
 }();
