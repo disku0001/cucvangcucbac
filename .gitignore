@@ -3,3 +3,4 @@ plans/
 screenshot.png
 node_modules/
 *.png
+!assets/*.png
