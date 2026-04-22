@@ -10,7 +10,7 @@ body{min-height:100vh;min-height:100dvh;font-family:'Inter',-apple-system,BlinkM
 
 /* Pill badge */
 /* Gift box icon (standalone, above pill) */
-.gift-icon{display:block;width:clamp(90px,13vw,120px);height:auto;margin-bottom:clamp(14px,2.4vh,22px);filter:drop-shadow(0 12px 28px rgba(0,0,0,.5));animation:floatY 4s ease-in-out infinite}
+.gift-icon{display:block;width:clamp(90px,16vw,200px);height:auto;margin-bottom:clamp(14px,2.4vh,22px);filter:drop-shadow(0 16px 36px rgba(0,0,0,.55));animation:floatY 4s ease-in-out infinite}
 .gift-icon img{width:100%;height:auto;display:block}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
 
