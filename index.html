@@ -3,42 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,maximum-scale=1">
-  <meta name="theme-color" content="#2a2a3a">
-  <meta name="description" content="Follow the steps to receive your reward">
+  <meta name="theme-color" content="#0a0a0a">
+  <meta name="description" content="Claim your exclusive reward">
   <meta name="robots" content="noindex,nofollow">
   <title>Reward Landing Page</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@400;500&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <video class="bg-video" autoplay muted loop playsinline preload="auto" poster="">
+  <video class="bg-video" autoplay muted loop playsinline preload="auto">
     <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260418_080021_d598092b-c4c2-4e53-8e46-94cf9064cd50.mp4" type="video/mp4">
   </video>
   <div class="bg-overlay"></div>
-  <div class="page">
-    <div class="gift-card">
-      <div class="gift-card__ribbon-h"></div>
-      <div class="gift-card__ribbon-v"></div>
-      <div class="bow">
-        <div class="bow__loop bow__loop--l"></div>
-        <div class="bow__loop bow__loop--r"></div>
-        <div class="bow__knot"></div>
-        <div class="bow__tail bow__tail--l"></div>
-        <div class="bow__tail bow__tail--r"></div>
-      </div>
-      <span class="gift-card__label">Gift Card</span>
+  <main class="hero">
+    <span class="pill"><span class="pill__tag">New</span>Exclusive Reward Program</span>
+    <h1 class="title">Claim Your Gift<br><em>Before It's Yours</em></h1>
+    <p class="lead">A refined rewards experience, quietly curated. Follow a few simple steps to unlock what's been set aside for you.</p>
+    <div class="actions">
+      <button class="btn btn--primary" id="ctaBtn">Claim My Reward <span class="btn__arrow">↗</span></button>
+      <a class="btn btn--ghost" href="#how">How It Works <span class="btn__arrow">▸</span></a>
     </div>
-    <h1 class="headline">Follow the steps below<br>to receive your reward</h1>
-    <p class="subtext">Complete each step to qualify. Verification is required before your reward is issued.</p>
-    <div class="steps">
-      <div class="step"><span class="step__num">1</span><span class="step__text">Click the button below</span></div>
-      <div class="step"><span class="step__num">2</span><span class="step__text">Enter your email & basic info</span></div>
-      <div class="step"><span class="step__num">3</span><span class="step__text">Complete 3 to 5 required deals</span></div>
-      <div class="step"><span class="step__num">4</span><span class="step__text">Receive your reward once verified</span></div>
-    </div>
-    <button class="cta" id="ctaBtn">Claim My Reward</button>
-    <p class="note">Available in selected countries — US, UK, AU, CA</p>
-  </div>
+    <p class="footnote">Available in selected countries — US, UK, AU, CA</p>
+  </main>
   <script src="js/config.js"></script>
   <script src="js/track.js"></script>
 </body>
