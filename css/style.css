@@ -9,9 +9,12 @@ body{min-height:100vh;min-height:100dvh;font-family:'Inter',-apple-system,BlinkM
 .view.is-active{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;transition:opacity .7s cubic-bezier(.2,.8,.3,1),transform .7s cubic-bezier(.2,.8,.3,1),visibility 0s}
 
 /* Pill badge */
-.pill{display:inline-flex;align-items:center;gap:10px;padding:5px 16px 5px 5px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:clamp(11px,1.8vw,13px);color:rgba(255,255,255,.85);letter-spacing:.2px;margin-bottom:clamp(18px,3vh,32px)}
-.pill__icon{width:clamp(18px,2.4vw,22px);height:clamp(18px,2.4vw,22px);flex-shrink:0;display:block;filter:drop-shadow(0 1px 2px rgba(0,0,0,.35))}
-.pill__tag{background:#fff;color:#0a0a0a;font-weight:600;font-size:clamp(10px,1.6vw,12px);padding:3px 10px;border-radius:999px;letter-spacing:.4px;margin-left:-4px}
+/* Gift box icon (standalone, above pill) */
+.gift-icon{width:clamp(56px,9vw,80px);height:auto;display:block;margin-bottom:clamp(14px,2.4vh,22px);filter:drop-shadow(0 8px 20px rgba(0,0,0,.4));animation:floatY 4s ease-in-out infinite}
+@keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+
+.pill{display:inline-flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:clamp(11px,1.8vw,13px);color:rgba(255,255,255,.85);letter-spacing:.2px;margin-bottom:clamp(18px,3vh,32px)}
+.pill__tag{background:#fff;color:#0a0a0a;font-weight:600;font-size:clamp(10px,1.6vw,12px);padding:3px 10px;border-radius:999px;letter-spacing:.4px}
 
 /* Title */
 .title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(38px,8vw,88px);line-height:1;letter-spacing:-.02em;margin-bottom:clamp(18px,3vh,28px);text-shadow:0 4px 24px rgba(0,0,0,.35)}
@@ -50,16 +53,18 @@ body{min-height:100vh;min-height:100dvh;font-family:'Inter',-apple-system,BlinkM
 .btn__arrow--back{font-size:1em}
 
 /* Entrance animation — hero only on load */
+.view--hero.is-active .gift-icon,
 .view--hero.is-active .pill,
 .view--hero.is-active .title,
 .view--hero.is-active .lead,
 .view--hero.is-active .actions,
-.view--hero.is-active .footnote{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) backwards}
-.view--hero.is-active .pill{animation-delay:.05s}
-.view--hero.is-active .title{animation-delay:.2s}
-.view--hero.is-active .lead{animation-delay:.4s}
-.view--hero.is-active .actions{animation-delay:.55s}
-.view--hero.is-active .footnote{animation-delay:.7s}
+.view--hero.is-active .footnote{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) backwards,floatY 4s ease-in-out infinite}
+.view--hero.is-active .gift-icon{animation-delay:0s,.9s}
+.view--hero.is-active .pill{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) .15s backwards}
+.view--hero.is-active .title{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) .3s backwards}
+.view--hero.is-active .lead{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) .45s backwards}
+.view--hero.is-active .actions{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) .6s backwards}
+.view--hero.is-active .footnote{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) .75s backwards}
 
 /* Steps stagger animation when view becomes active */
 .view--steps.is-active .step{animation:fadeUp .7s cubic-bezier(.2,.8,.3,1) backwards}
