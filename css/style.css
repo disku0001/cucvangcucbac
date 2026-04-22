@@ -4,7 +4,9 @@ body{min-height:100vh;min-height:100dvh;font-family:'Inter',-apple-system,BlinkM
 .bg-video{position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
 .bg-overlay{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.45) 50%,rgba(0,0,0,.55) 100%);z-index:-1;pointer-events:none}
 
-.hero{width:100%;max-width:760px;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1}
+.stage{width:100%;max-width:760px;position:relative;z-index:1;display:grid}
+.view{grid-area:1/1;display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;visibility:hidden;transform:translateY(16px);transition:opacity .7s cubic-bezier(.2,.8,.3,1),transform .7s cubic-bezier(.2,.8,.3,1),visibility 0s .7s;pointer-events:none}
+.view.is-active{opacity:1;visibility:visible;transform:translateY(0);pointer-events:auto;transition:opacity .7s cubic-bezier(.2,.8,.3,1),transform .7s cubic-bezier(.2,.8,.3,1),visibility 0s}
 
 /* Pill badge */
 .pill{display:inline-flex;align-items:center;gap:10px;padding:6px 16px 6px 6px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-size:clamp(11px,1.8vw,13px);color:rgba(255,255,255,.85);letter-spacing:.2px;margin-bottom:clamp(18px,3vh,32px)}
@@ -13,6 +15,7 @@ body{min-height:100vh;min-height:100dvh;font-family:'Inter',-apple-system,BlinkM
 /* Title */
 .title{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(38px,8vw,88px);line-height:1;letter-spacing:-.02em;margin-bottom:clamp(18px,3vh,28px);text-shadow:0 4px 24px rgba(0,0,0,.35)}
 .title em{font-style:italic;font-weight:400}
+.title--sm{font-size:clamp(32px,6.5vw,64px);margin-bottom:clamp(24px,4vh,40px)}
 
 /* Lead text */
 .lead{font-family:'Inter',sans-serif;font-size:clamp(14px,2.2vw,17px);line-height:1.55;color:rgba(255,255,255,.82);max-width:540px;margin-bottom:clamp(24px,4vh,36px);font-weight:400;text-shadow:0 2px 8px rgba(0,0,0,.3)}
@@ -34,13 +37,36 @@ body{min-height:100vh;min-height:100dvh;font-family:'Inter',-apple-system,BlinkM
 /* Footnote */
 .footnote{font-size:clamp(11px,1.8vw,13px);color:rgba(255,255,255,.55);padding:8px 18px;border-radius:999px;background:rgba(0,0,0,.25);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.08);letter-spacing:.2px}
 
-/* Subtle entrance animation */
-.pill,.title,.lead,.actions,.footnote{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) backwards}
-.pill{animation-delay:.05s}
-.title{animation-delay:.2s}
-.lead{animation-delay:.4s}
-.actions{animation-delay:.55s}
-.footnote{animation-delay:.7s}
+/* Steps list */
+.steps{list-style:none;width:100%;max-width:580px;display:flex;flex-direction:column;gap:clamp(10px,1.8vh,16px);margin-bottom:clamp(24px,4vh,36px);text-align:left}
+.step{display:flex;align-items:flex-start;gap:clamp(14px,2.5vw,22px);padding:clamp(14px,2vh,20px) clamp(16px,3vw,24px);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:clamp(12px,2vw,18px);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);transition:background .3s ease,border-color .3s ease,transform .3s ease}
+.step:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);transform:translateY(-1px)}
+.step__num{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(22px,4vw,32px);color:rgba(255,255,255,.5);line-height:1;flex-shrink:0;min-width:clamp(32px,5vw,42px)}
+.step__body{flex:1}
+.step__title{font-family:'Inter',sans-serif;font-size:clamp(14px,2.4vw,17px);font-weight:500;color:#fff;margin-bottom:4px;letter-spacing:-.01em}
+.step__desc{font-family:'Inter',sans-serif;font-size:clamp(12px,2vw,14px);color:rgba(255,255,255,.65);line-height:1.45}
+
+.btn__arrow--back{font-size:1em}
+
+/* Entrance animation — hero only on load */
+.view--hero.is-active .pill,
+.view--hero.is-active .title,
+.view--hero.is-active .lead,
+.view--hero.is-active .actions,
+.view--hero.is-active .footnote{animation:fadeUp .9s cubic-bezier(.2,.8,.3,1) backwards}
+.view--hero.is-active .pill{animation-delay:.05s}
+.view--hero.is-active .title{animation-delay:.2s}
+.view--hero.is-active .lead{animation-delay:.4s}
+.view--hero.is-active .actions{animation-delay:.55s}
+.view--hero.is-active .footnote{animation-delay:.7s}
+
+/* Steps stagger animation when view becomes active */
+.view--steps.is-active .step{animation:fadeUp .7s cubic-bezier(.2,.8,.3,1) backwards}
+.view--steps.is-active .step:nth-child(1){animation-delay:.25s}
+.view--steps.is-active .step:nth-child(2){animation-delay:.35s}
+.view--steps.is-active .step:nth-child(3){animation-delay:.45s}
+.view--steps.is-active .step:nth-child(4){animation-delay:.55s}
+
 @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:480px){
