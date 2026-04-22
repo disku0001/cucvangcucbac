@@ -20,7 +20,10 @@
   <div class="bg-overlay"></div>
   <main class="stage">
     <section class="view view--hero is-active" id="viewHero">
-      <img class="gift-icon" src="assets/giftbox.svg" alt="" width="120" height="120">
+      <picture class="gift-icon">
+        <source srcset="assets/giftbox.webp" type="image/webp">
+        <img src="assets/giftbox.png" alt="" width="160" height="160" loading="eager" decoding="async">
+      </picture>
       <span class="pill"><span class="pill__tag">New</span>Exclusive Reward Program</span>
       <h1 class="title">Claim Your Gift<br><em>Before It's Yours</em></h1>
       <p class="lead">A refined rewards experience, quietly curated. Follow a few simple steps to unlock what's been set aside for you.</p>
