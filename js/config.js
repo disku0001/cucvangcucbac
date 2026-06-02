@@ -1,6 +1,6 @@
 const CONFIG = {
   // Offer — REPLACE with your real affiliate URL before deploy
-  offerUrl: 'https://example.com/offer',
+  offerUrl: 'https://giftclick.org/aff_c?offer_id=1113&aff_id=175473',
 
   // UTM params to capture and forward
   //utmParams: ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'],
