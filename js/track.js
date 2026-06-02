@@ -1,28 +1,7 @@
 !function(){
-  var params=new URLSearchParams(location.search);
-  var isMobile=/Mobi|Android/i.test(navigator.userAgent);
-
-  function buildOfferUrl(){
-    var cid=Date.now().toString(36)+'_'+Math.random().toString(36).substr(2,9);
-    var url=new URL(CONFIG.offerUrl);
-    url.searchParams.set('click_id',cid);
-    (CONFIG.utmParams||[]).forEach(function(k){
-      var v=params.get(k);
-      if(v)url.searchParams.set(k,v);
-    });
-    if(CONFIG.affiliateSubIdKey){
-      url.searchParams.set(CONFIG.affiliateSubIdKey,JSON.stringify({
-        cid:cid,
-        t:new Date().toISOString(),
-        d:isMobile?'m':'d'
-      }));
-    }
-    return url.toString();
-  }
-
   function bindCta(id){
     var b=document.getElementById(id);
-    if(b)b.addEventListener('click',function(){location.href=buildOfferUrl();});
+    if(b)b.addEventListener('click',function(){location.href=CONFIG.offerUrl;});
   }
   bindCta('ctaBtn');
   bindCta('ctaBtn2');
